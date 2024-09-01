@@ -26,7 +26,6 @@ import javax.swing.UIManager;
 public class medicinas extends JPanel {
 	private JTable table;
 	private JTextField nom;
-	private JTextField id;
 	private JTextField cant;
 	DefaultTableModel modelo;
 	private JTextField bid;
@@ -67,10 +66,6 @@ public class medicinas extends JPanel {
 		lblNombre.setBounds(45, 96, 56, 16);
 		add(lblNombre);
 		
-		JLabel lblId = new JLabel("ID");
-		lblId.setBounds(45, 150, 56, 16);
-		add(lblId);
-		
 		JLabel lblCantidad = new JLabel("Cantidad");
 		lblCantidad.setBounds(45, 224, 56, 16);
 		add(lblCantidad);
@@ -79,12 +74,6 @@ public class medicinas extends JPanel {
 		nom.setBounds(125, 93, 116, 22);
 		add(nom);
 		nom.setColumns(10);
-		
-		id = new JTextField();
-		id.setText("");
-		id.setBounds(125, 147, 116, 22);
-		add(id);
-		id.setColumns(10);
 		
 		JLabel lblBusqueda = new JLabel("Busqueda");
 		lblBusqueda.setForeground(Color.WHITE);
@@ -142,23 +131,19 @@ public class medicinas extends JPanel {
 	}
 	public void agregar()
 	{
-	
-		info[0]=id.getText();
-		info[1]=nom.getText();
-		info[2]=cant.getText();
+		info[0]=nom.getText();
+		info[1]=cant.getText();
 		
 	
 		 try {
-				pst = cn.prepareStatement("insert into medicina(IDmedicina,Nombre,Cantidad)values(?,?,?)");
+				pst = cn.prepareStatement("insert into medicina(Nombre,Cantidad) values(?,?)");
 				pst.setString(1, info[0]);
 				pst.setString(2, info[1]);
-				pst.setString(3, info[2]);
 				pst.executeUpdate();
 				
 			 
 				
 				nom.setText("");
-				id.setText("");
 				cant.setText("");
 				nom.requestFocus();
 				table_load();
@@ -224,13 +209,11 @@ e1.printStackTrace();
      
                 cant.setText(canti);
                 nom.setText(name);
-                id.setText(id1);
                 
             }  
             else
             {
             	nom.setText("");
-            	id.setText("");
             	cant.setText("");
             	
             }
@@ -260,7 +243,6 @@ catch (SQLException ex) {
 		            table_load();
 		          
 		            nom.setText("");
-		            id.setText("");
 		           cant.setText("");
 		            nom.requestFocus();
 		}

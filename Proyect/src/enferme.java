@@ -29,7 +29,6 @@ import java.awt.event.KeyEvent;
 
 public class enferme extends JPanel {
 	private JTextField nom;
-	private JTextField id;
 	private JTable table;
 	private JComboBox<String> espe;
 	private JComboBox<String> gen;
@@ -55,12 +54,6 @@ public class enferme extends JPanel {
 		lblNombre.setBounds(34, 55, 67, 16);
 		add(lblNombre);
 		
-		JLabel lblId = new JLabel("ID:");
-		lblId.setFont(new Font("Verdana", Font.PLAIN, 14));
-		lblId.setForeground(new Color(255, 255, 255));
-		lblId.setBounds(45, 109, 56, 16);
-		add(lblId);
-		
 		JLabel lblGenero = new JLabel("Genero:");
 		lblGenero.setFont(new Font("Verdana", Font.PLAIN, 14));
 		lblGenero.setForeground(new Color(255, 255, 255));
@@ -83,11 +76,6 @@ public class enferme extends JPanel {
 		nom.setBounds(127, 55, 116, 22);
 		add(nom);
 		nom.setColumns(10);
-		
-		id = new JTextField();
-		id.setBounds(127, 109, 116, 22);
-		add(id);
-		id.setColumns(10);
 		
 		gen = new JComboBox();
 		gen.setBackground(new Color(122, 122, 122));
@@ -207,23 +195,20 @@ public class enferme extends JPanel {
 		String []info=new String[5];
 		info[0]=nom.getText();
 		info[1]=(String)gen.getSelectedItem();
-		info[2]=(String)espe.getSelectedItem();	
-		info[3]=id.getText();
+		info[2]=(String)espe.getSelectedItem();	;
 		info[4]=(String)turn.getSelectedItem();	
 		 try {
-				pst = cn.prepareStatement("insert into enfer(IDenfer,Nombre,Turno,Genero,Especialidad)values(?,?,?,?,?)");
-				pst.setString(1, info[3]);
-				pst.setString(2, info[0]);
-				pst.setString(3, info[4]);
-				pst.setString(4, info[1]);
-				pst.setString(5, info[2]);
+				pst = cn.prepareStatement("insert into enfer(Nombre,Turno,Genero,Especialidad)values(?,?,?,?)");
+				pst.setString(1, info[0]);
+				pst.setString(2, info[4]);
+				pst.setString(3, info[1]);
+				pst.setString(4, info[2]);
 				
 				pst.executeUpdate();
 				
 			 
 				
 				nom.setText("");
-				id.setText("");
 				nom.requestFocus();
 				table_load();
 			   }
@@ -261,7 +246,6 @@ public class enferme extends JPanel {
         	table_load();
 
         	nom.setText("");
-        	id.setText("");
         	nom.requestFocus();
 }
 
@@ -316,7 +300,6 @@ e1.printStackTrace();
                 String  genero= rs.getString(3);
                 String  especi= rs.getString(4);
                 nom.setText(name);
-                id.setText(id1);
                 DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) espe.getModel();
                 model.addElement(especi);
                 espe.setSelectedItem(especi);

@@ -42,7 +42,6 @@ public class cit extends JPanel {
 	TableRowSorter<DefaultTableModel> sorter;
 	String []info=new String[10];
 	private JTable table_1;
-	private JTextField id;
 	private JTextField idpaci;
 	private JComboBox<String> comboBox;
 	/**
@@ -153,17 +152,8 @@ public class cit extends JPanel {
 		scrollPane_2.setViewportView(table_1);
 		table_load2();
 		
-		id = new JTextField();
-		id.setBounds(42, 296, 116, 22);
-		add(id);
-		id.setColumns(10);
-		
-		JLabel lblId = new JLabel("Id Cita");
-		lblId.setBounds(42, 269, 56, 16);
-		add(lblId);
-		
-		JLabel lblId_1 = new JLabel("Id");
-		lblId_1.setBounds(42, 331, 56, 16);
+		JLabel lblId_1 = new JLabel("Id del paciente");
+		lblId_1.setBounds(42, 331, 116, 16);
 		add(lblId_1);
 		
 		idpaci = new JTextField();
@@ -247,8 +237,6 @@ public class cit extends JPanel {
 	public void hacer() throws SQLException
 	{
 		String id1 = idpaci.getText();
-		info[0]=id.getText();
-		
 		pst = cn.prepareStatement("select Nombre,Genero,Fecha,Consultorio,Doctor from pacientes where IDpaciente = ?");
         pst.setString(1, id1);
         
@@ -291,10 +279,9 @@ public class cit extends JPanel {
 				
 			 
 				
-				id.setText("");
+				
 				idpaci.setText("");
 				dia.setText("");
-				id.requestFocus();
 				table_load2();
 			   }
 

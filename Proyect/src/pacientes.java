@@ -286,13 +286,14 @@ e1.printStackTrace();
 		
 	
 		 try {
-				pst = cn.prepareStatement("insert into pacientes(IDpaciente,Nombre,Genero,Fecha,Consultorio,Doctor)values(?,?,?,?,?,?)");
-				pst.setString(1, info[0]);
-				pst.setString(2, info[1]);
-				pst.setString(3, info[2]);
-				pst.setString(4, info[3]);
-				pst.setString(5, info[4]);
-				pst.setString(6, info[5]);
+				pst = cn.prepareStatement("insert into pacientes(Nombre,Genero,Fecha,Consultorio,Doctor,N_afilacion)values(?,?,?,?,?,?)");
+				
+				pst.setString(1, info[1]);
+				pst.setString(2, info[2]);
+				pst.setString(3, info[3]);
+				pst.setString(4, info[4]);
+				pst.setString(5, info[5]);
+				pst.setString(6, info[0]);
 				pst.executeUpdate();
 			
 				

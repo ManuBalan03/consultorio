@@ -103,12 +103,6 @@ public class medicin extends JPanel {
 		lblNombre.setBounds(12, 60, 56, 16);
 		add(lblNombre);
 		
-		JLabel lblId = new JLabel("ID");
-		lblId.setForeground(new Color(255, 255, 255));
-		lblId.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblId.setBounds(12, 103, 56, 16);
-		add(lblId);
-		
 		JLabel lblTurno = new JLabel("Turno");
 		lblTurno.setForeground(new Color(255, 255, 255));
 		lblTurno.setFont(new Font("Verdana", Font.PLAIN, 13));
